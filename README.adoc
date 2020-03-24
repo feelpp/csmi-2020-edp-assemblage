@@ -6,7 +6,9 @@ Ce TP est à effectuer en python.
 == Lecture d'un fichier Gmsh 
 
 Le fichier GmshRead.py contient une classe mesh dont les objets sont les données associées à un maillage triangulaire stem:[\mathrm{P} 1] en stem:[2 \mathrm{D}] contruit à partir d'un fichier gmsh (v4). 
+
 Un élément de la classe maillage contient:
+
 * `Nnodes`: nombre de noeuds du maillage 
 * `Nodes`: tableau de taille (Nnodes, 2 ) contenant les coordonnées des noeuds du maillage 
 * `label`: tableau de taille Nnodes contenant des informations sur la location du noeud (noeud du bords / noeuds interne) 
@@ -34,14 +36,14 @@ La base d'élément fini associé à chacun de ces points est donnée par:
 \psi_{1}(x, y)=1-(x+y), \quad \psi_{2}(x, y)=x, \quad \psi_{3}(x, y)=y
 ++++
 
-7. Créer une fonction `coord(1d)` qui prend en entrée un tableau de taille 3 contenant les coordonnées barycentriques stem:[\left(\lambda_{1}, \lambda_{2}, \lambda_{3}\right)] d'un point et renvoie le tableau de taille 2 contenant les coordonnées de ce point:
-
+1. Créer une fonction `coord(1d)` qui prend en entrée un tableau de taille 3 contenant les coordonnées barycentriques stem:[\left(\lambda_{1}, \lambda_{2}, \lambda_{3}\right)] d'un point et renvoie le tableau de taille 2 contenant les coordonnées de ce point:
++
 [stem]
 ++++
 (x, y)=\lambda_{1} a_{1}+\lambda_{2} a_{2}+\lambda_{3} a_{3}
 ++++
-
-8. Nous souhaitons créer une fonction `base_psiref()`` qui permettra d'effectuer les quadratures
++
+2. Nous souhaitons créer une fonction `base_psiref()`` qui permettra d'effectuer les quadratures
 sur l'élément de référence. Cette fonction doit renvoyer les quatre tableaux suivants:
 * `pts`: tableau de taille (7, 3) contenant les coordonnées barycentriques des points de quadrature,
 * `wght`: tableau de taille 7 contenant les poids de quadrature associé, 
@@ -50,10 +52,10 @@ sur l'élément de référence. Cette fonction doit renvoyer les quatre tableaux
 
 == Assemblage de la matrice.
 
-7. Créer une `class poisson` qui contient un prend à la contruction en entrée un maillage `Mh` et une fonction, f, correspondant au second membre de l’équation. Un élément de la classe contiendra de plus `Ndof`, le nombre de degré de liberté (correspondant au nombre de noeuds du maillage), une matrice de taille `(Ndof,Ndof)`, stockée intialement au format link:https://scipy-lectures.org/advanced/scipy_sparse/dok_matrix.html[dok], un tableau `rhs` de taille `Ndof`, contenant le second membre du système linéaire et enfin un tableau u de taille `Ndof` contenant la solution approchée.
-
-8. Ajouter une fonction assemble_matrix(self) qui assemble la matrice. On pourra compléter
-le code suivant :
+1. Créer une `class poisson` qui contient un prend à la contruction en entrée un maillage `Mh` et une fonction, f, correspondant au second membre de l’équation. Un élément de la classe contiendra de plus `Ndof`, le nombre de degré de liberté (correspondant au nombre de noeuds du maillage), une matrice de taille `(Ndof,Ndof)`, stockée intialement au format link:https://scipy-lectures.org/advanced/scipy_sparse/dok_matrix.html[dok], un tableau `rhs` de taille `Ndof`, contenant le second membre du système linéaire et enfin un tableau u de taille `Ndof` contenant la solution approchée.
++
+2. Ajouter une fonction `assemble_matrix(self)` qui assemble la matrice. On pourra compléter le code suivant :
++
 [source,python]
 ----
     pts, wght, psi, derpsi = basis_psiref()
@@ -73,12 +75,16 @@ le code suivant :
                     self.M[inode, jnode] += ....
                     self.M = self.M.tocsc()
 ----
-9. La matrice précédente est la matrice associée au Laplacien avec condition de Neumann. Pour inclure des conditions de Dirichlet, modifier la matrice de telle sorte que `M[inode,inode] = tgv`,
++
+3. La matrice précédente est la matrice associée au Laplacien avec condition de Neumann. Pour inclure des conditions de Dirichlet, modifier la matrice de telle sorte que `M[inode,inode] = tgv`,
 avec `tgv = 1.e6` dès que `inode` correspond à un noeud du bord.
-10. Créer sur le même modèle une fonction `rhs( self)` qui assemble le second membre. Pour inclure des conditions de Dirichlet, il faut aussi que `rhs[inode] = 0` dès que `inode` correspond à un noeud du bord.
-11. Créer une fonction `solve( self)` qui calcule la solution approchée.
-12. Ajouter une fonction `plot_sol( self)` qui permet d’afficher la solution approchée et ajouter
-un argument plot dans la fonction solve.
++
+4. Créer sur le même modèle une fonction `rhs( self)` qui assemble le second membre. Pour inclure des conditions de Dirichlet, il faut aussi que `rhs[inode] = 0` dès que `inode` correspond à un noeud du bord.
++
+5. Créer une fonction `solve( self)` qui calcule la solution approchée.
++
+6. Ajouter une fonction `plot_sol( self)` qui permet d’afficher la solution approchée et ajouter un argument plot dans la fonction solve.
++
 [source,python]
 ----
     x = Mh.Nodes[:, 0]
@@ -89,6 +95,8 @@ un argument plot dans la fonction solve.
     antialiased=True, cmap=plt.cm.CMRmap)
     fig.colorbar(surf, shrink=0.5, aspect=5)
 ----
-13. Tester votre fonction avec un maillage du disque et la fonction `f = 1`. Calculer la solution exacte et son gradient.
-14. Ajouter une fonction `compute( self)` qui calcule l’erreur en norme stem:[L^2]
++
+7. Tester votre fonction avec un maillage du disque et la fonction `f = 1`. Calculer la solution exacte et son gradient.
++
+8. Ajouter une fonction `compute( self)` qui calcule l’erreur en norme stem:[L^2]
 et en norme stem:[H^1] entre la solution approchée et la solution exacte (projetée sur l’espace d’élément finis P1). Vérifier l’ordre de convergence numérique.
