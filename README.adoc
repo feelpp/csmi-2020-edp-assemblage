@@ -100,3 +100,5 @@ avec `tgv = 1.e6` dès que `inode` correspond à un noeud du bord.
 +
 8. Ajouter une fonction `compute( self)` qui calcule l’erreur en norme stem:[L^2]
 et en norme stem:[H^1] entre la solution approchée et la solution exacte (projetée sur l’espace d’élément finis P1). Vérifier l’ordre de convergence numérique.
+9.Implémenter le support de condition de Neumann non homogène
+10.Tester votre code avec conditions de Dirichlet et Neumann homogènes et non homogènes sur une géométrie non triviale de votre choix avec une solution manufacturée dans l'espace et une non-polynomiale en faisant une étude de convergence.
