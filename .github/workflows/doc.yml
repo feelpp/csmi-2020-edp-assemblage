@@ -19,7 +19,7 @@ jobs:
         sudo apt install asciidoctor
         asciidoctor README.adoc
         mkdir build
-        mv README.html build
+        mv README.html build/index.html
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
