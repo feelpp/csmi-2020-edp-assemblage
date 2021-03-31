@@ -1,7 +1,7 @@
 = Assemblage de la matrice d'élément fini
 :stem: latexmath
 
-Ce TP est à effectuer en python.
+Ce TP est à effectuer en python, l'énoncé est https://feelpp.github.io/csmi-edp-assemblage/[ici].
 
 == Lecture d'un fichier Gmsh 
 
