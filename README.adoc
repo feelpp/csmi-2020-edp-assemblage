@@ -112,7 +112,7 @@ et en norme stem:[H^1] entre la solution approchée et la solution exacte (proje
 +
 12. Implémenter les cas stem:[P^2] et stem:[P^3], Tester et vérifier les résultats des cas précédents, qu'observe t'on sur l'ordre de convergence en normes stem:[L^2] et stem:[H^1]. Est-ce le résultat attendu ? A quoi faut il faire attention ?
 
-== Implementation le cas parabolique dn {feelpp}
+== Implementation le cas parabolique avec {feelpp}
 
 Soit stem:[\Omega=[0,1\]^2], rajouter le terme de dérivée en temps stem:[\frac{\partial u}{\partial t}], implémenter un schéma Euler implicite en temps,  linéaire et quadratique par morceaux en espace, des conditions de Dirichlet et un second membre donnés par les fonctions ci-dessous de telle facon que ces fonctions soient solutions du problème et tester l'erreur stem:[L^2] au dernier pas de temps avec les fonctions
 
