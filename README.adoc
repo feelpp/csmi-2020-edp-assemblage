@@ -1,4 +1,4 @@
-:feelpp:Feel++
+:feelpp: Feel++
 :stem: latexmath
 = Assemblage de la matrice d'élément fini
 
