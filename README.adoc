@@ -114,7 +114,7 @@ et en norme stem:[H^1] entre la solution approchée et la solution exacte (proje
 
 == Implementation le cas parabolique dn {feelpp}
 
-Rajouter le terme de dérivée en temps du second ordre stem:[\frac{\partial u}{\partial t}], implémenter un shéma Euler implicite en temps,  linéaire et quadratique par morceaux en espace et tester l'erreur stem:[L^2] au dernier pas de temps avec les fonctions
+Soit stem:[\Omega=[0,1\]^2], rajouter le terme de dérivée en temps stem:[\frac{\partial u}{\partial t}], implémenter un schéma Euler implicite en temps,  linéaire et quadratique par morceaux en espace, des conditions de Dirichlet et un second membre donnés par les fonctions ci-dessous de telle facon que ces fonctions soient solutions du problème et tester l'erreur stem:[L^2] au dernier pas de temps avec les fonctions
 
 13. stem:[t+x] sur l'intervalle de temps stem:[[0,1\]] avec stem:[\Delta t=0.1], Qu'observez vous concernant l'erreur ?
 +
