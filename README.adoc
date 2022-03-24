@@ -1,7 +1,6 @@
+= Assemblage de la matrice d'élément fini= Assemblage de la matrice d'élément fini
 :feelpp: Feel++
 :stem: latexmath
-= Assemblage de la matrice d'élément fini
-
 
 Ce TP est à effectuer en python, l'énoncé est https://feelpp.github.io/csmi-edp-assemblage/[ici].
 
