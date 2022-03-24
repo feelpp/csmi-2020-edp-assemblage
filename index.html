@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Lecture d&#8217;un fichier Gmsh</title>
+<title>Assemblage de la matrice d&#8217;élément fini</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,21 +438,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
+<h1>Assemblage de la matrice d&#8217;élément fini</h1>
 </div>
 <div id="content">
-<div class="paragraph">
-<p>:feelpp:Feel++
-:stem: latexmath
-= Assemblage de la matrice d&#8217;élément fini</p>
-</div>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>Ce TP est à effectuer en python, l&#8217;énoncé est <a href="https://feelpp.github.io/csmi-edp-assemblage/">ici</a>.</p>
+</div>
+</div>
 </div>
 <div class="sect1">
 <h2 id="_lecture_dun_fichier_gmsh">Lecture d&#8217;un fichier Gmsh</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Le fichier GmshRead.py contient une classe mesh dont les objets sont les données associées à un maillage triangulaire \$\mathrm{P} 1\$ en \$2 \mathrm{D}\$ contruit à partir d&#8217;un fichier gmsh (v4).</p>
+<p>Le fichier GmshRead.py contient une classe mesh dont les objets sont les données associées à un maillage triangulaire \(\mathrm{P} 1\) en \(2 \mathrm{D}\) contruit à partir d&#8217;un fichier gmsh (v4).</p>
 </div>
 <div class="paragraph">
 <p>Un élément de la classe maillage contient:</p>
@@ -515,21 +515,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_base_de_lélément_fini_p1">Base de l&#8217;élément fini P1.</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Considérons le triangle de sommets \$a_{1}=(0,0), a_{2}=(1,0)\$ et \$a_{3}=(0,1),\$ comme éléments de références.
+<p>Considérons le triangle de sommets \(a_{1}=(0,0), a_{2}=(1,0)\) et \(a_{3}=(0,1),\) comme éléments de références.
 La base d&#8217;élément fini associé à chacun de ces points est donnée par:</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\$\psi_{1}(x, y)=1-(x+y), \quad \psi_{2}(x, y)=x, \quad \psi_{3}(x, y)=y\$
+\[\psi_{1}(x, y)=1-(x+y), \quad \psi_{2}(x, y)=x, \quad \psi_{3}(x, y)=y\]
 </div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Créer une fonction <code>coord(1d)</code> qui prend en entrée un tableau de taille 3 contenant les coordonnées barycentriques \$\left(\lambda_{1}, \lambda_{2}, \lambda_{3}\right)\$ d&#8217;un point et renvoie le tableau de taille 2 contenant les coordonnées de ce point:</p>
+<p>Créer une fonction <code>coord(1d)</code> qui prend en entrée un tableau de taille 3 contenant les coordonnées barycentriques \(\left(\lambda_{1}, \lambda_{2}, \lambda_{3}\right)\) d&#8217;un point et renvoie le tableau de taille 2 contenant les coordonnées de ce point:</p>
 <div class="stemblock">
 <div class="content">
-\$(x, y)=\lambda_{1} a_{1}+\lambda_{2} a_{2}+\lambda_{3} a_{3}\$
+\[(x, y)=\lambda_{1} a_{1}+\lambda_{2} a_{2}+\lambda_{3} a_{3}\]
 </div>
 </div>
 </li>
@@ -616,8 +616,8 @@ avec <code>tgv = 1.e6</code> dès que <code>inode</code> correspond à un noeud 
 <p>Tester votre fonction avec un maillage du disque et la fonction <code>f = 1</code>. Calculer la solution exacte et son gradient.</p>
 </li>
 <li>
-<p>Ajouter une fonction <code>compute( self)</code> qui calcule l&#8217;erreur en norme \$L^2\$
-et en norme \$H^1\$ entre la solution approchée et la solution exacte (projetée sur l&#8217;espace d&#8217;élément finis P1). Vérifier l&#8217;ordre de convergence numérique.</p>
+<p>Ajouter une fonction <code>compute( self)</code> qui calcule l&#8217;erreur en norme \(L^2\)
+et en norme \(H^1\) entre la solution approchée et la solution exacte (projetée sur l&#8217;espace d&#8217;élément finis P1). Vérifier l&#8217;ordre de convergence numérique.</p>
 </li>
 <li>
 <p>Implémenter le support de condition de Neumann non homogène</p>
@@ -630,36 +630,36 @@ et en norme \$H^1\$ entre la solution approchée et la solution exacte (projeté
 </div>
 </div>
 <div class="sect1">
-<h2 id="_comparaison_avec_feelpp">Comparaison avec {feelpp}</h2>
+<h2 id="_comparaison_avec_feel">Comparaison avec Feel++</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Implémenter les cas précédents(Q10) avec {feelpp} en python. Tester et vérifier les résultats des cas précédents, comparer le comportement des normes \$L^2\$ et \$H^1\$.</p>
+<p>Implémenter les cas précédents(Q10) avec Feel++ en python. Tester et vérifier les résultats des cas précédents, comparer le comportement des normes \(L^2\) et \(H^1\).</p>
 </li>
 <li>
-<p>Implémenter les cas \$P^2\$ et \$P^3\$, Tester et vérifier les résultats des cas précédents, qu&#8217;observe t&#8217;on sur l&#8217;ordre de convergence en normes \$L^2\$ et \$H^1\$. Est-ce le résultat attendu ? A quoi faut il faire attention ?</p>
+<p>Implémenter les cas \(P^2\) et \(P^3\), Tester et vérifier les résultats des cas précédents, qu&#8217;observe t&#8217;on sur l&#8217;ordre de convergence en normes \(L^2\) et \(H^1\). Est-ce le résultat attendu ? A quoi faut il faire attention ?</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_implementation_le_cas_parabolique_dn_feelpp">Implementation le cas parabolique dn {feelpp}</h2>
+<h2 id="_implementation_le_cas_parabolique_dn_feel">Implementation le cas parabolique dn Feel++</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Rajouter le terme de dérivée en temps du second ordre \$\frac{\partial u}{\partial t}\$, implémenter un shéma Euler implicite en temps,  linéaire et quadratique par morceaux en espace et tester l&#8217;erreur \$L^2\$ au dernier pas de temps avec les fonctions</p>
+<p>Rajouter le terme de dérivée en temps du second ordre \(\frac{\partial u}{\partial t}\), implémenter un shéma Euler implicite en temps,  linéaire et quadratique par morceaux en espace et tester l&#8217;erreur \(L^2\) au dernier pas de temps avec les fonctions</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>\$t+x\$ sur l&#8217;intervalle de temps \$[0,1]\$ avec \$\Delta t=0.1\$, Qu&#8217;observez vous concernant l&#8217;erreur ?</p>
+<p>\(t+x\) sur l&#8217;intervalle de temps \([0,1]\) avec \(\Delta t=0.1\), Qu&#8217;observez vous concernant l&#8217;erreur ?</p>
 </li>
 <li>
-<p>\$\sin(\pi x)\cos(\pi y)exp(-t)\$ sur l&#8217;intervalle de temps \$[0,1]\$ avec \$\Delta t=0.1\$</p>
+<p>\(\sin(\pi x)\cos(\pi y)exp(-t)\) sur l&#8217;intervalle de temps \([0,1]\) avec \(\Delta t=0.1\)</p>
 </li>
 <li>
-<p>\$\sin(\pi x)\cos(\pi y)exp(-t)\$ sur l&#8217;intervalle de temps \$[0,1]\$ avec \$\Delta t=0.05\$</p>
+<p>\(\sin(\pi x)\cos(\pi y)exp(-t)\) sur l&#8217;intervalle de temps \([0,1]\) avec \(\Delta t=0.05\)</p>
 </li>
 <li>
 <p>Comparer l&#8217;erreur sur les 2 derniers cas.</p>
@@ -671,8 +671,32 @@ et en norme \$H^1\$ entre la solution approchée et la solution exacte (projeté
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-03-24 22:17:33 UTC
+Last updated 2022-03-24 22:18:48 UTC
 </div>
 </div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>
